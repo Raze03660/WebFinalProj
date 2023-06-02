@@ -1,66 +1,70 @@
-﻿@model WebFinalProj.Models.Product
+﻿@model WebFinalProj.Models.Products
 
 @{
-    ViewBag.Title = "Details";
+    ViewBag.Title = Model.Name;
 }
 
-<h2>Details</h2>
+<div class="row">
 
-<div>
-    <h4>Product</h4>
-    <hr />
-    <dl class="dl-horizontal">
-        <dt>
-            @Html.DisplayNameFor(model => model.Name)
-        </dt>
+    <div class="col-md-6 ">
+        <div id="preview-box" class="preview-box">
+            <img id="preview" src="@Model.ImageURL" alt="Image preview" class="img-fluid">
+        </div>
+    </div>
 
-        <dd>
-            @Html.DisplayFor(model => model.Name)
-        </dd>
+    <div class="col-md-6">
+        <h2>Details</h2>
+        <hr />
+        <dl class="dl-horizontal">
+            <dt>
+                @Html.DisplayNameFor(model => model.Name)
+            </dt>
 
-        <dt>
-            @Html.DisplayNameFor(model => model.Price)
-        </dt>
+            <dd>
+                @Html.DisplayFor(model => model.Name)
+            </dd>
 
-        <dd>
-            @Html.DisplayFor(model => model.Price)
-        </dd>
+            <dt>
+                @Html.DisplayNameFor(model => model.Price)
+            </dt>
 
-        <dt>
-            @Html.DisplayNameFor(model => model.ImageURL)
-        </dt>
+            <dd>
+                @Html.DisplayFor(model => model.Price)
+            </dd>
 
-        <dd>
-            @Html.DisplayFor(model => model.ImageURL)
-        </dd>
+            @*<dt>
+                    @Html.DisplayNameFor(model => model.ImageURL)
+                </dt>
 
-        <dt>
-            @Html.DisplayNameFor(model => model.Description)
-        </dt>
+                <dd>
+                    @Html.DisplayFor(model => model.ImageURL)
+                </dd>*@
 
-        <dd>
-            @Html.DisplayFor(model => model.Description)
-        </dd>
+            <dt>
+                @Html.DisplayNameFor(model => model.Description)
+            </dt>
 
-        <dt>
-            @Html.DisplayNameFor(model => model.PublishDate)
-        </dt>
+            <dd>
+                @Html.DisplayFor(model => model.Description)
+            </dd>
 
-        <dd>
-            @Html.DisplayFor(model => model.PublishDate)
-        </dd>
+            <dt>
+                @Html.DisplayNameFor(model => model.Quantity)
+            </dt>
 
-        <dt>
-            @Html.DisplayNameFor(model => model.Quantity)
-        </dt>
+            <dd>
+                @Html.DisplayFor(model => model.Quantity)
+            </dd>
 
-        <dd>
-            @Html.DisplayFor(model => model.Quantity)
-        </dd>
+        </dl>
+        <p>
+            @*
+                @Html.ActionLink("Edit", "Edit", new { id = Model.Id}, new { @class = "btn btn-primary" }) |
+            *@
 
-    </dl>
+            <a href="@Url.Action("AddCart","Products")?ProductId=@Model.Id" class="btn btn-primary">加入購物車</a> |
+            @Html.ActionLink("Back to List", "Index", new { @class = "btn btn-primary" })
+        </p>
+
+    </div>
 </div>
-<p>
-    @Html.ActionLink("Edit", "Edit", new { id = Model.Id }) |
-    @Html.ActionLink("Back to List", "Index")
-</p>

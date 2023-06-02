@@ -8,11 +8,12 @@
       <PropertyRef Name="Id" />
     </Key>
     <Property Name="Id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
-    <Property Name="Name" Type="String" Nullable="false" MaxLength="100" />
+    <Property Name="Name" Type="String" Nullable="false" MaxLength="100" Unicode="true" FixedLength="false" />
     <Property Name="Price" Type="Int32" Nullable="false" />
-    <Property Name="ImageURL" Type="String" Nullable="false" />
-    <Property Name="Description" Type="String" Nullable="false" MaxLength="Max" />
-    <Property Name="PublishDate" Type="DateTime" Nullable="false" />
+    <Property Name="ImageURL" Type="String" Nullable="false" MaxLength="Max" Unicode="true" FixedLength="false" />
+    <Property Name="Description" Type="String" Nullable="false" MaxLength="Max" Unicode="true" FixedLength="false" />
+    <Property Name="PublishDate" Type="DateTime" Nullable="false" Precision="3" />
     <Property Name="Quantity" Type="Int16" Nullable="false" />
+    <Property Name="UserName" Type="String" Nullable="false" MaxLength="100" FixedLength="false" Unicode="true" />
   </EntityType>
 </Schema>

@@ -8,7 +8,6 @@
     @Styles.Render("~/Content/css")
     @Scripts.Render("~/bundles/modernizr")
     @Styles.Render("https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css")
-    
 </head>
 <body>
 
@@ -16,27 +15,12 @@
     <nav class="navbar bg-white navbar-light navbar-expand-lg">
         <div class="container">
             @Html.ActionLink("服飾平台", "Index", "Home", new { area = "" }, new { @class = "navbar-brand fw-bold fs-1" })
-
             <button class="navbar-toggler" type="button" data-bs-toggle="collapse"
                     data-bs-target="#navbarSupportedContent">
                 <span class="navbar-toggler-icon"></span>
             </button>
-            @Html.ActionLink("衣服List", "Index", "Products", new { area = "" }, new { @class = "navbar-brand" })
-            <div class="collapse navbar-collapse" id="navbarSupportedContent">
-                <ul class="navbar-nav ms-lg-auto">
-                    <li class="nav-item me-4" style="margin-right: 25px;">
-                        <a href="@Url.Action("Index", "Home")" class="nav-link">
-                            <!--會員icon-->
-                            <i class="fa-regular fa-user fa-xl"></i>
-                        </a>
-                    </li>
-                    <li class="nav-item me-4" style="margin-right: 25px;">
-                        <a href="@Url.Action("Index", "Home")" class="nav-link">
-                            <!--購物車icon-->
-                            <i class="fa-solid fa-cart-shopping fa-xl"></i>
-                        </a>
-                    </li>
-                </ul>
+            <div class="collapse navbar-collapse d-sm-inline-flex justify-content-end">
+                @Html.Partial("_LoginPartial")
             </div>
         </div>
     </nav>

@@ -1,41 +1,48 @@
-﻿@model WebFinalProj.Models.RegisterViewModel
+﻿﻿@model WebFinalProj.Models.RegisterViewModel
 @{
     ViewBag.Title = "Register";
 }
 
+<h2 id="title">@ViewBag.Title</h2>
 <main aria-labelledby="title">
-    <h2 id="title">@ViewBag.Title.</h2>
+    <div class="container justify-content-center">
+        <!-- 或者使用 "container-fluid" -->
+        @using (Html.BeginForm("Register", "Account", FormMethod.Post, new { role = "form" }))
+        {
+            @Html.AntiForgeryToken()
+            @Html.ValidationSummary("", new { @class = "text-danger" })
 
-    @using (Html.BeginForm("Register", "Account", FormMethod.Post, new { role = "form" }))
-    {
-        @Html.AntiForgeryToken()
-        <h4>建立新帳戶。</h4>
-        <hr />
-        @Html.ValidationSummary("", new { @class = "text-danger" })
-        <div class="row">
-            @Html.LabelFor(m => m.Email, new { @class = "col-md-2 col-form-label" })
-            <div class="col-md-10">
-                @Html.TextBoxFor(m => m.Email, new { @class = "form-control" })
+            <div class="row mb-3">
+                @Html.LabelFor(m => m.UserName, new { @class = "col-lg-2 col-form-label" })
+                <div class="col-lg">
+                    @Html.TextBoxFor(m => m.UserName, new { @class = "form-control" })
+                </div>
             </div>
-        </div>
-        <div class="row">
-            @Html.LabelFor(m => m.Password, new { @class = "col-md-2 col-form-label" })
-            <div class="col-md-10">
-                @Html.PasswordFor(m => m.Password, new { @class = "form-control" })
+            <div class="row mb-3">
+                @Html.LabelFor(m => m.Email, new { @class = "col-lg-2 col-form-label" })
+                <div class="col-lg">
+                    @Html.TextBoxFor(m => m.Email, new { @class = "form-control" })
+                </div>
             </div>
-        </div>
-        <div class="row">
-            @Html.LabelFor(m => m.ConfirmPassword, new { @class = "col-md-2 col-form-label" })
-            <div class="col-md-10">
-                @Html.PasswordFor(m => m.ConfirmPassword, new { @class = "form-control" })
+            <div class="row mb-3">
+                @Html.LabelFor(m => m.Password, new { @class = "col-lg-2 col-form-label" })
+                <div class="col-lg">
+                    @Html.PasswordFor(m => m.Password, new { @class = "form-control" })
+                </div>
             </div>
-        </div>
-        <div class="row">
-            <div class="offset-md-2 col-md-10">
-                <input type="submit" value="註冊" class="btn btn-outline-dark" />
+            <div class="row mb-3">
+                @Html.LabelFor(m => m.ConfirmPassword, new { @class = "col-lg-2 col-form-label" })
+                <div class="col-lg">
+                    @Html.PasswordFor(m => m.ConfirmPassword, new { @class = "form-control" })
+                </div>
             </div>
-        </div>
-    }
+            <div class="row">
+                <div class="offset col-md-10">
+                    <input type="submit" value="註冊" class="btn btn-outline-dark" />
+                </div>
+            </div>
+        }
+    </div>
 </main>
 
 @section Scripts {

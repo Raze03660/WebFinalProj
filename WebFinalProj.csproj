@@ -178,30 +178,43 @@
       <DependentUpon>Global.asax</DependentUpon>
     </Compile>
     <Compile Include="Models\AccountViewModels.cs" />
-    <Compile Include="Models\Carts.Context.cs">
-      <AutoGen>True</AutoGen>
-      <DesignTime>True</DesignTime>
-      <DependentUpon>Carts.Context.tt</DependentUpon>
-    </Compile>
-    <Compile Include="Models\Carts.cs">
-      <AutoGen>True</AutoGen>
-      <DesignTime>True</DesignTime>
-      <DependentUpon>Carts.tt</DependentUpon>
-    </Compile>
-    <Compile Include="Models\Carts.Designer.cs">
-      <AutoGen>True</AutoGen>
-      <DesignTime>True</DesignTime>
-      <DependentUpon>Carts.edmx</DependentUpon>
-    </Compile>
     <Compile Include="Models\IdentityModels.cs" />
     <Compile Include="Models\ManageViewModels.cs" />
-    <Compile Include="Models\Product.cs">
-      <DependentUpon>Carts.tt</DependentUpon>
+    <Compile Include="Models\Order.cs">
+      <DependentUpon>ShoppingCarts.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Models\OrderDetail.cs">
+      <DependentUpon>ShoppingCarts.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Models\Products.cs">
+      <DependentUpon>ShoppingCarts.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Models\ShoppingCarts.Context.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>ShoppingCarts.Context.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Models\ShoppingCarts.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>ShoppingCarts.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Models\ShoppingCarts.Designer.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>ShoppingCarts.edmx</DependentUpon>
     </Compile>
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="Startup.cs" />
   </ItemGroup>
   <ItemGroup>
+    <Content Include="asset\css\animated.css" />
+    <Content Include="asset\css\fontawesome.css" />
+    <Content Include="asset\css\owl.css" />
+    <Content Include="asset\css\templatemo-digimedia-v1.css" />
+    <Content Include="asset\css\templatemo-digimedia-v2.css" />
+    <Content Include="asset\css\templatemo-digimedia-v3.css" />
+    <Content Include="asset\image\welcome_shopping.jpg" />
     <Content Include="Content\bootstrap-grid.css" />
     <Content Include="Content\bootstrap-grid.min.css" />
     <Content Include="Content\bootstrap-grid.rtl.css" />
@@ -221,16 +234,15 @@
     <Content Include="favicon.ico" />
     <Content Include="Global.asax" />
     <Content Include="Content\Site.css" />
-    <Content Include="Models\Carts.Context.tt">
+    <Content Include="Models\ShoppingCarts.Context.tt">
       <Generator>TextTemplatingFileGenerator</Generator>
-      <DependentUpon>Carts.edmx</DependentUpon>
-      <LastGenOutput>Carts.Context.cs</LastGenOutput>
+      <LastGenOutput>ShoppingCarts.Context.cs</LastGenOutput>
+      <DependentUpon>ShoppingCarts.edmx</DependentUpon>
     </Content>
-    <Content Include="Models\Carts.edmx.sql" />
-    <Content Include="Models\Carts.tt">
+    <Content Include="Models\ShoppingCarts.tt">
       <Generator>TextTemplatingFileGenerator</Generator>
-      <DependentUpon>Carts.edmx</DependentUpon>
-      <LastGenOutput>Carts.cs</LastGenOutput>
+      <DependentUpon>ShoppingCarts.edmx</DependentUpon>
+      <LastGenOutput>ShoppingCarts.cs</LastGenOutput>
     </Content>
     <Content Include="Scripts\bootstrap.bundle.js" />
     <Content Include="Scripts\bootstrap.bundle.min.js" />
@@ -238,12 +250,12 @@
     <Content Include="Scripts\bootstrap.esm.min.js" />
     <Content Include="Scripts\bootstrap.js" />
     <Content Include="Scripts\bootstrap.min.js" />
-    <EntityDeploy Include="Models\Carts.edmx">
+    <EntityDeploy Include="Models\ShoppingCarts.edmx">
       <Generator>EntityModelCodeGenerator</Generator>
-      <LastGenOutput>Carts.Designer.cs</LastGenOutput>
+      <LastGenOutput>ShoppingCarts.Designer.cs</LastGenOutput>
     </EntityDeploy>
-    <Content Include="Models\Carts.edmx.diagram">
-      <DependentUpon>Carts.edmx</DependentUpon>
+    <Content Include="Models\ShoppingCarts.edmx.diagram">
+      <DependentUpon>ShoppingCarts.edmx</DependentUpon>
     </Content>
     <None Include="Scripts\jquery-3.4.1.intellisense.js" />
     <Content Include="Scripts\jquery-3.4.1.js" />
@@ -295,7 +307,10 @@
     <Content Include="Views\Products\Details.cshtml" />
     <Content Include="Views\Products\Edit.cshtml" />
     <Content Include="Views\Products\Index.cshtml" />
-    <Content Include="Views\Products\Test.cshtml" />
+    <Content Include="Views\Products\OrderDetail.cshtml" />
+    <Content Include="Views\Products\OrderList.cshtml" />
+    <Content Include="Views\Products\ShoppingCart.cshtml" />
+    <Content Include="Views\Products\UploadCloth.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />

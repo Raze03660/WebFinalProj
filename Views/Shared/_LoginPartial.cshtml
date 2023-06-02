@@ -3,20 +3,41 @@
 {
     using (Html.BeginForm("LogOff", "Account", FormMethod.Post, new { id = "logoutForm", @class = "navbar-right" }))
     {
-    @Html.AntiForgeryToken()
+        @Html.AntiForgeryToken()
+        <div class="collapse navbar-collapse" id="navbarSupportedContent">
+            <ul class="navbar-nav navbar-right">
 
-    <ul class="navbar-nav navbar-right">
-        <li>
-            @Html.ActionLink("您好 " + User.Identity.GetUserName() + "!", "Index", "Manage", routeValues: null, htmlAttributes: new { title = "Manage", @class="nav-link" })
-        </li>
-        <li><a class="nav-link" href="javascript:document.getElementById('logoutForm').submit()">登出</a></li>
-    </ul>
+                <li>@Html.ActionLink("商品列表", "Index", "Products", new { area = "" }, new { @class = "nav-link" })</li>
+                <li>@Html.ActionLink("上傳衣服", "Create", "Products", new { area = "" }, new { @class = "nav-link" })</li>
+                <li>@Html.ActionLink("我的商品", "UploadCloth", "Products", new { area = "" }, new { @class = "nav-link" })</li>
+                <li>@Html.ActionLink("我的訂單", "OrderList", "Products", new { area = "" }, new { @class = "nav-link" })</li>
+                <li class="nav-item">
+                    <a href="@Url.Action("ShoppingCart", "Products")" class="nav-link">
+                        <!--購物車icon-->
+                        <i class="fa-solid fa-cart-shopping fa-xl"></i>
+                    </a>
+                </li>
+                <li class="nav-item">
+                    <a href="@Url.Action("Index", "Manage", routeValues: null)" class="nav-link">
+                        <!--會員icon-->
+                        <div>
+                            <i class="fa-regular fa-user fa-xl"></i>
+                            <text style="font-size: 90%; color: black; font-weight: bold;">@User.Identity.GetUserName()</text>
+                        </div>
+
+                    </a>
+                </li>
+                <li><a class="nav-link" href="javascript:document.getElementById('logoutForm').submit()">登出</a></li>
+            </ul>
+        </div>
     }
 }
 else
 {
-    <ul class="navbar-nav navbar-right">
-        <li>@Html.ActionLink("註冊", "Register", "Account", routeValues: null, htmlAttributes: new { id = "registerLink", @class="nav-link" })</li>
-        <li>@Html.ActionLink("登入", "Login", "Account", routeValues: null, htmlAttributes: new { id = "loginLink", @class="nav-link" })</li>
-    </ul>
+    <div class="collapse navbar-collapse" id="navbarSupportedContent">
+        <ul class="navbar-nav navbar-right">
+            <li class="nav-item">@Html.ActionLink("註冊", "Register", "Account", routeValues: null, htmlAttributes: new { id = "registerLink", @class = "nav-link" })</li>
+            <li class="nav-item">@Html.ActionLink("登入", "Login", "Account", routeValues: null, htmlAttributes: new { id = "loginLink", @class = "nav-link" })</li>
+        </ul>
+    </div>
 }

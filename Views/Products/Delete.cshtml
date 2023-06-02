@@ -28,12 +28,13 @@
         </dd>
 
         <dt>
-            @Html.DisplayNameFor(model => model.ImageURL)
+            圖片
         </dt>
 
         <dd>
-            @Html.DisplayFor(model => model.ImageURL)
+            <img src="@Model.ImageURL" alt="Alternate Text" style="width:300px;height:300px;" />
         </dd>
+
 
         <dt>
             @Html.DisplayNameFor(model => model.Description)
@@ -69,11 +70,12 @@
 
     </dl>
 
-    @using (Html.BeginForm()) {
+    @using (Html.BeginForm())
+    {
         @Html.AntiForgeryToken()
 
         <div class="form-actions no-color">
-            <input type="submit" value="Delete" class="btn btn-default" /> |
+            <input type="submit" value="Delete" class="btn btn-danger" /> |
             @Html.ActionLink("Back to List", "Index")
         </div>
     }

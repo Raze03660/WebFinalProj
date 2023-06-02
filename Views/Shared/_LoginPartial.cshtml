@@ -1,5 +1,30 @@
 ﻿@using Microsoft.AspNet.Identity
-@if (Request.IsAuthenticated)
+@if (Request.IsAuthenticated && User.Identity.GetUserName() == "Admin")
+{
+    using (Html.BeginForm("LogOff", "Account", FormMethod.Post, new { id = "logoutForm", @class = "navbar-right" }))
+    {
+        @Html.AntiForgeryToken()
+        <div class="collapse navbar-collapse" id="navbarSupportedContent">
+            <ul class="navbar-nav navbar-right">
+                <li>@Html.ActionLink("商品列表", "Index", "Products", new { area = "" }, new { @class = "nav-link" })</li>
+                <li>@Html.ActionLink("管理商品列表", "ManageCloth", "Products", new { area = "" }, new { @class = "nav-link" })</li>
+                <li>@Html.ActionLink("管理商品訂單", "ManageOrderList", "Products", new { area = "" }, new { @class = "nav-link" })</li>
+                <li class="nav-item">
+                    <a href="@Url.Action("Index", "Manage", routeValues: null)" class="nav-link">
+                        <!--會員icon-->
+                        <div>
+                            <i class="fa-regular fa-user fa-xl"></i>
+                            <text style="font-size: 90%; color: black; font-weight: bold;">@User.Identity.GetUserName()</text>
+                        </div>
+
+                    </a>
+                </li>
+                <li><a class="nav-link" href="javascript:document.getElementById('logoutForm').submit()">登出</a></li>
+            </ul>
+        </div>
+    }
+}
+else if (Request.IsAuthenticated)
 {
     using (Html.BeginForm("LogOff", "Account", FormMethod.Post, new { id = "logoutForm", @class = "navbar-right" }))
     {

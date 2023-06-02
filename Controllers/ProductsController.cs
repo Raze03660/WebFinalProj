@@ -95,6 +95,7 @@ namespace WebFinalProj.Controllers
             var orderDetails = db.OrderDetail.Where(m => m.OrderGuid == OrderGuid).ToList();
             return View(orderDetails);
         }
+
         public ActionResult DeleteCart(string Id)
         {
             var orderDetails = db.OrderDetail.Where(m => m.Id == Id).FirstOrDefault();
@@ -102,6 +103,7 @@ namespace WebFinalProj.Controllers
             db.SaveChanges();
             return RedirectToAction("ShoppingCart");
         }
+
         public ActionResult UploadCloth()
         {
             var UserName = User.Identity.GetUserName();
@@ -116,7 +118,21 @@ namespace WebFinalProj.Controllers
                 return View(UploadList);
             }
         }
-
+        public ActionResult ManageCloth()
+        {
+            return View(db.Products.ToList());
+        }
+        public ActionResult ManageOrderList(string OrderGuid)
+        {
+            return View(db.Order.ToList());
+        }
+        public ActionResult DeleteOrderList(string OrderGuid)
+        {
+            var order = db.Order.Where(m => m.OrderGuid == OrderGuid).FirstOrDefault();
+            db.Order.Remove(order);
+            db.SaveChanges();
+            return RedirectToAction("ManageOrderList");
+        }
         // GET: Products
         public ActionResult Index()
         {

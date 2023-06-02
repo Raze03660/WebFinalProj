@@ -29,7 +29,7 @@
     {
         <tr>
             <td>
-                <img src="@item.ImageURL" alt="@item.Name" style="width:100px;height:100px;" />
+                <img src="@item.ImageURL" alt="@item.Name" style="width:200px;height:200px;" />
             </td>
             <td>
                 @Html.DisplayFor(modelItem => item.Name)
@@ -44,8 +44,8 @@
                 @Html.Raw(item.Description.Length > 65 ? item.Description.Substring(0, 65) + "..." : item.Description)
             </td>
             <td>
-                @Html.ActionLink("Edit", "Edit", new { id = item.Id }) |
-                @Html.ActionLink("Delete", "Delete", new { id = item.Id })
+                @Html.ActionLink("Edit", "Edit", new { id = item.Id }, new { @class="btn btn-primary"}) |
+                @Html.ActionLink("Delete", "Delete", new { id = item.Id },new { @class = "btn btn-danger" })
             </td>
         </tr>
     }

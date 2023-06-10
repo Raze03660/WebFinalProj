@@ -38,9 +38,9 @@ namespace WebFinalProj.Controllers
             order.Date = DateTime.Now;
             order.ImageURL = "";
             db.Order.Add(order);
-
             //訂單加入後，需一併更新訂單明細內容
             var cartList = db.OrderDetail.Where(m => m.UserName == UserName).ToList();
+
             foreach (var item in cartList)
             {
                 item.OrderGuid = guid;
@@ -58,6 +58,7 @@ namespace WebFinalProj.Controllers
                 .Where(m => m.ProductId == ProductId && m.UserName == UserName).FirstOrDefault();
             if (currentCar == null)
             {
+
                 //如果篩選條件資料為null，代表要新增全新一筆訂單明細資料
                 //將產品資料欄位一一對照至訂單明細的欄位
                 var products = db.Products.Where(m => m.Id == ProductId).FirstOrDefault();
@@ -74,13 +75,50 @@ namespace WebFinalProj.Controllers
             }
             else
             {
-                //如果購物車已有此商品，僅需將數量加1
-                currentCar.Quantity++;
+                var products = db.Products.Where(m => m.Id == ProductId).FirstOrDefault();
+                if (products.Quantity > currentCar.Quantity)
+                {
+                    //如果購物車已有此商品，僅需將數量加1
+                    currentCar.Quantity++;
+                }
+                else
+                {
+                    TempData["ResultMessage"] = string.Format("商品[{0}]庫存已達上限無法在加購", currentCar.Name);
+                    return RedirectToAction("ShoppingCart");
+                }
+
             }
 
             //儲存資料庫並導至購物車檢視頁面
             db.SaveChanges();
             return RedirectToAction("ShoppingCart");
+        }
+        public ActionResult ReduceCart(string Id)
+        {
+
+            //取得該使用者目前購物車內是否已有此商品，且尚未形成訂單的資料
+            var currentCar = db.OrderDetail.Where(m => m.Id == Id).FirstOrDefault();
+
+            if (currentCar == null)
+            {
+                TempData["ResultMessage"] = "指定資料不存在，請重新操作";
+                return RedirectToAction("ShoppingCart");
+            }
+            else if (currentCar.Quantity > 1)
+            {
+                //如果購物車已有此商品，僅需將數量減1
+                currentCar.Quantity--;
+                //儲存資料庫並導至購物車檢視頁面
+                db.SaveChanges();
+                return RedirectToAction("ShoppingCart");
+            }
+            else
+            {
+                TempData["ResultMessage"] = string.Format("商品[{0}]成功移除", currentCar.Name);
+                DeleteCart(currentCar.Id);
+                return RedirectToAction("ShoppingCart");
+
+            }
         }
 
         public ActionResult OrderList()

@@ -2,7 +2,14 @@
 @{
     ViewBag.Title = "會員購物車清單";
 }
+@if (TempData["ResultMessage"] != null)
+{
 
+    <script type="text/javascript">
+                alert('@TempData["ResultMessage"]');
+    </script>
+
+}
 <h2>會員購物車清單</h2>
 
 <table class="table">
@@ -29,7 +36,7 @@
     {
         <tr>
             <td>
-                <img src="@item.ImageURL" alt="@item.Name" style="width:200px;height:200px;"/>
+                <img src="@item.ImageURL" alt="@item.Name" style="width:200px;height:200px;" />
             </td>
             <td>
                 @Html.DisplayFor(modelItem => item.Name)
@@ -44,13 +51,19 @@
                 @Html.DisplayFor(modelItem => item.Quantity)
             </td>
             <td>
+                <a href="@Url.Action("AddCart","Products")?ProductId=@item.ProductId"
+                   class="btn btn-primary">+</a>
+                <a href="@Url.Action("ReduceCart")?Id=@item.Id"
+                   class="btn btn-danger" )">-</a>
+            </td>
+            <td>
                 <a href="@Url.Action("DeleteCart")?Id=@item.Id"
                    class="btn btn-danger" onclick="return confirm('確定放棄購買 @item.Name 嗎？')">刪除購物車</a>
             </td>
         </tr>
     }
-
 </table>
+
 <form action="@Url.Action("ShoppingCart")" method="post">
     <div class="form-horizontal">
         <h4>填寫訂單收件人資料</h4>
